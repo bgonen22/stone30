@@ -29,19 +29,25 @@ void setup()
 void loop()
 {
   if (tlc_fadeBufferSize < TLC_FADE_BUFFER_LENGTH - 2) {
-    if (!tlc_isFading(channel)) {
-      uint16_t duration = analogRead(SPEED_PIN) * 2;
-      int maxValue = analogRead(BRIGHTNESS_PIN) * 2;
-      uint32_t startMillis = millis() + 50;
-      uint32_t endMillis = startMillis + duration;
-      tlc_addFade(channel, 0, maxValue, startMillis, endMillis);
-      tlc_addFade(channel, maxValue, 0, endMillis, endMillis + duration);
-    }
+    uint16_t duration = analogRead(SPEED_PIN) * 2;
+    int maxValue = analogRead(BRIGHTNESS_PIN) * 2;
     int arraySize = sizeof(channels) / sizeof(channels[0]);
-    if (index++ == arraySize) { 
-      index = 0;
+    uint32_t startMillis;
+    uint32_t endMillis;
+    for (i = 0; i<arraySize ; i++) {
+      channel = channels[i];
+      if (!tlc_isFading(channel)) {
+        startMillis += millis() + 50;
+        endMillis += startMillis + duration;
+        tlc_addFade(channel, 0, maxValue, startMillis, endMillis);
+        tlc_addFade(channel, maxValue, 0, endMillis, endMillis + duration);
+      }
     }
-    channel = channels[index];
+    // int arraySize = sizeof(channels) / sizeof(channels[0]);
+    // if (index++ == arraySize) { 
+    //   index = 0;
+    // }
+    // channel = channels[index];
   }
   tlc_updateFades();
 }
