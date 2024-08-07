@@ -34,7 +34,7 @@ void loop()
     int arraySize = sizeof(channels) / sizeof(channels[0]);
     uint32_t startMillis;
     uint32_t endMillis;
-    for (i = 0; i<arraySize ; i++) {
+    for (int i = 0; i<arraySize ; i++) {
       channel = channels[i];
       if (!tlc_isFading(channel)) {
         startMillis += millis() + 50;
