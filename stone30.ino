@@ -12,10 +12,11 @@
 #include "tlc_fades.h"
 #define BRIGHTNESS_PIN 0 
 #define SPEED_PIN 1
+#define SPEED_FACTOR 4 
+#define DELAY_BETWEEN_LEDS 30 // suppose to make the wave slower
 TLC_CHANNEL_TYPE channel;
 int channels[] = {1, 2, 3, 4, 5, 6, 11, 12, 13, 14, 17, 18, 19, 20, 24, 25, 26, 27, 28, 29, 30};
 
-};
 int index;
 void setup()
 {
@@ -27,7 +28,7 @@ void loop()
 {
   if (tlc_fadeBufferSize < TLC_FADE_BUFFER_LENGTH - 2) {
     if (!tlc_isFading(channel)) {
-      uint16_t duration = analogRead(SPEED_PIN) * 2;
+      uint16_t duration = analogRead(SPEED_PIN) * SPEED_FACTOR;
       int maxValue = analogRead(BRIGHTNESS_PIN) * 2;
       uint32_t startMillis = millis() + 50;
       uint32_t endMillis = startMillis + duration;
@@ -41,4 +42,5 @@ void loop()
     channel = channels[index];
   }
   tlc_updateFades();
+  delay(DELAY_BETWEEN_LEDS)
 }
