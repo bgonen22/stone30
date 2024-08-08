@@ -13,11 +13,8 @@
 #define BRIGHTNESS_PIN 0 
 #define SPEED_PIN 1
 TLC_CHANNEL_TYPE channel;
-int channels[] = {
-    2, 3, 4, 5, 6, 7,       // 2 to 7
-    12, 13, 14, 15,         // 12 to 15
-    31, 30, 29, 28,         // 31 to 28 (reverse order)
-    24, 23, 22, 21, 20, 19, 18 // 24 to 18 (reverse order)
+int channels[] = {1, 2, 3, 4, 5, 6, 11, 12, 13, 14, 17, 18, 19, 20, 24, 25, 26, 27, 28, 29, 30};
+
 };
 int index;
 void setup()
