@@ -30,11 +30,11 @@ void loop()
     if (!tlc_isFading(channel)) {
       uint16_t duration = analogRead(SPEED_PIN) * SPEED_FACTOR;
       int maxValue = analogRead(BRIGHTNESS_PIN) * 2;
-      maxValue = map(maxValue, 0, 2046, 0, 255);
+      maxValue = map(maxValue, 0, 2046, 0, 4095);
       uint32_t startMillis = millis() + 50;
       uint32_t endMillis = startMillis + duration;
-      tlc_addFade(channel, 0, maxValue, startMillis, endMillis + duration);
-      tlc_addFade(channel, maxValue, 0, endMillis + duration, endMillis + (2*duration));
+      tlc_addFade(channel, 0, maxValue, startMillis, endMillis );
+      tlc_addFade(channel, maxValue, 0, endMillis, endMillis + duration);
     }
     int arraySize = sizeof(channels) / sizeof(channels[0]);
     if (index++ == arraySize) { 
