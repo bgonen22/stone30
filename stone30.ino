@@ -42,5 +42,5 @@ void loop()
     channel = channels[index];
   }
   tlc_updateFades();
-  delay(DELAY_BETWEEN_LEDS)
+  delay(DELAY_BETWEEN_LEDS);
 }
