@@ -14,6 +14,7 @@
 #define SPEED_PIN 1
 #define SPEED_FACTOR 4 // suppose to make the wave length
 #define DELAY_BETWEEN_LEDS 30 // suppose to make the wave slower
+#define TRACE_SIZE 3
 TLC_CHANNEL_TYPE channel;
 int channels[] = {1, 2, 3, 4, 5, 6, 11, 12, 13, 14, 17, 18, 19, 20, 24, 25, 26, 27, 28, 29, 30};
 
@@ -26,7 +27,7 @@ void setup()
 
 void loop()
 {
-  if (tlc_fadeBufferSize < TLC_FADE_BUFFER_LENGTH - 2) {
+  if (tlc_fadeBufferSize < TRACE_SIZE /*TLC_FADE_BUFFER_LENGTH - 2*/) {
     if (!tlc_isFading(channel)) {
       uint16_t duration = analogRead(SPEED_PIN) * SPEED_FACTOR;
       int maxValue = analogRead(BRIGHTNESS_PIN) * 2;
