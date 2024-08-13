@@ -13,7 +13,7 @@
 #define BRIGHTNESS_PIN 0 
 #define SPEED_PIN 1
 #define SPEED_FACTOR 4 // suppose to make the wave length
-#define DELAY_BETWEEN_LEDS 30 // suppose to make the wave slower
+#define DELAY_BETWEEN_LEDS 0 // suppose to make the wave slower
 #define TRACE_SIZE 3
 #define TIME_ON_TOP 50 // the time from 0.5 MAX till MAX
 TLC_CHANNEL_TYPE channel;
