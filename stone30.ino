@@ -16,6 +16,7 @@
 #define DELAY_BETWEEN_LEDS 0 // suppose to make the wave slower
 #define TRACE_SIZE 3
 #define TIME_ON_TOP 0.3 // the presentage time from 0.5 MAX till MAX
+#define REVERSE 1 // define the direction of the trace
 TLC_CHANNEL_TYPE channel;
 int channels[] = {1, 2, 3, 4, 5, 6, 11, 12, 13, 14, 17, 18, 19, 20, 24, 25, 26, 27, 28, 29, 30};
 
@@ -41,8 +42,19 @@ void loop()
       tlc_addFade(channel, 0.5*maxValue, 0, endMillis + 2*(TIME_ON_TOP*duration), endMillis + (TIME_ON_TOP+1)*duration);
     }
     int arraySize = sizeof(channels) / sizeof(channels[0]);
-    if (index-- == -1) { 
-      index = arraySize;
+    int maxi;
+    int mini;
+    if (REVERSE) {
+      index --;
+      maxi = -1;
+      mini = arraySize;
+    } else {
+      index ++;
+      maxi == arraySize;
+      mini = 0;
+    }
+    if (index == maxi) { 
+      index = mini;
     }
     channel = channels[index];
   }
