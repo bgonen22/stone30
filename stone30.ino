@@ -41,8 +41,8 @@ void loop()
       tlc_addFade(channel, 0.5*maxValue, 0, endMillis + 2*(TIME_ON_TOP*duration), endMillis + (TIME_ON_TOP+1)*duration);
     }
     int arraySize = sizeof(channels) / sizeof(channels[0]);
-    if (index++ == arraySize) { 
-      index = 0;
+    if (index-- == -1) { 
+      index = arraySize;
     }
     channel = channels[index];
   }
